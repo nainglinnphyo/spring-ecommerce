@@ -25,7 +25,7 @@ This repository contains the backend implementation of a Painting E-commerce Sto
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/nainglinnphyo/painting-ecommerce-api.git
+   git clone https://github.com/nainglinnphyo/spring-ecommerce.git
    ```
 
 2. **Configure MySQL Database:**
