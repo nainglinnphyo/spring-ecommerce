@@ -28,12 +28,6 @@ public class Author {
      @Column(name = "author_name")
      private String authorName;
 
-     @Column(name = "description")
-     private String description;
-
-     @Column(name = "published")
-     private boolean published;
-
      @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = CascadeType.ALL)
      private List<Painting> paintingList;
 
