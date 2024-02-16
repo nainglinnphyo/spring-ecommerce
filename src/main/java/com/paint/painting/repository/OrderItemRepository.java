@@ -1,12 +1,11 @@
 package com.paint.painting.repository;
 
-import com.paint.painting.entity.Paint;
+import com.paint.painting.entity.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PaintRepository extends JpaRepository<Paint, Long> {
-    List<Paint> findByTitle(String title);
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 }

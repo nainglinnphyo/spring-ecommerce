@@ -35,7 +35,7 @@ public class Artist {
 
     @LastModifiedDate
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 
     public Artist() {
 
@@ -45,32 +45,6 @@ public class Artist {
         this.name = name;
         this.paints = paints;
     }
-
     // Getter and Setter methods
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Paint> getPaints() {
-        return paints;
-    }
-
-    public void setPaints(List<Paint> paints) {
-        this.paints = paints;
-    }
-
     
 }

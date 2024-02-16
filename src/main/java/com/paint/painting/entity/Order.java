@@ -1,4 +1,6 @@
 package com.paint.painting.entity;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -8,37 +10,28 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity
+@Entity(name = "voucher")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Paint {
-    @Setter
-    @Getter
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "price")
-    private Number price;
-
     @ManyToOne()
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @OneToMany(mappedBy = "paint", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("paint")
+    @Column(name = "total_price")
+    private Number totalPrice;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("order")
     private List<OrderItem> orderItems;
 
     @CreatedDate
@@ -49,13 +42,7 @@ public class Paint {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Paint() {
+    public Order() {
 
     }
-
-    public Paint(String title, Artist artist) {
-        this.title = title;
-        this.artist = artist;
-    }
-
 }
