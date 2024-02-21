@@ -1,4 +1,5 @@
 package com.paint.painting.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
@@ -7,8 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +32,16 @@ public class Paint {
     @Column(name = "price")
     private Number price;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     @ManyToOne()
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @OneToMany(mappedBy = "paint", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("paint")
@@ -53,9 +59,11 @@ public class Paint {
 
     }
 
-    public Paint(String title, Artist artist) {
+    public Paint(String title,String imagePath, Artist artist,Category category) {
         this.title = title;
+        this.imagePath = imagePath;
         this.artist = artist;
+        this.category = category;
     }
 
 }

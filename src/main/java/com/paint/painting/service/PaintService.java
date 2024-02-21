@@ -33,6 +33,7 @@ public class PaintService {
 
     public Paint createPaint(Paint paint) {
         paint.setArtist(paint.getArtist());
+        paint.setImagePath(paint.getImagePath());
         paint.setCreatedAt(new Date());
         paint.setUpdatedAt(new Date());
         return paintRepository.save(paint);
