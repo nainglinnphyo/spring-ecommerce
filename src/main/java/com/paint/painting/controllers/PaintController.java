@@ -104,7 +104,30 @@ public class PaintController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        String uploadPath = Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + UPLOAD_DIR;
+
+        // Create the upload directory if it doesn't exist
+        File dir = new File(uploadPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        // Generate a unique filename for the image
         String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+
+        // Save the image to the server
+        Path filePath = Paths.get(uploadPath, fileName);
+        try {
+            file.transferTo(filePath.toFile());
+        } catch (IllegalStateException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        // Build the local URL for the uploaded image
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/upload/")
                 .path(fileName)
